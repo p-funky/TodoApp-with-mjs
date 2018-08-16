@@ -33,6 +33,7 @@ router.route('/api/v1/todos')
 
 router.route('/api/v1/todos/:id')
   .get(authenticate.verifyToken, TodosController.getOneTodo)
-  .put(authenticate.verifyToken, TodosController.updateATodo);
+  .put(authenticate.verifyToken, TodosController.updateATodo)
+  .delete(authenticate.verifyToken, TodosController.deleteATodo);
 
 export default router;

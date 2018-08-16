@@ -54,6 +54,19 @@ const TodosController = {
       res.status(400).send(error.message);
     };
   },
+  async deleteATodo(req, res) {
+    try {
+        const myTodo = await Todo.findOne({
+            where: { id: req.params.id, userId: req.decoded.userId }
+        });
+        if (!myTodo) return res.status(403).send({ message: 'User not authorised' });
+        await myTodo.destroy();
+        return res.status(200).send({ message: 'Todo successfully deleted' });
+    }
+    catch (error) {
+      res.status(400).send(error.message);
+    };
+  },
 }
 
 export default TodosController;
