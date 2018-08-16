@@ -1,6 +1,6 @@
-## TODO LIST API
+## TODO API
 
-This is a todo list CRUD API, users are allowed to create as many unique todos as possible.
+This is a todo CRUD API in which users are allowed to create as many unique todos as possible.
 
 #### Technologies used
 - Nodejs (NOTE: Node v8.5.0 or higher)
