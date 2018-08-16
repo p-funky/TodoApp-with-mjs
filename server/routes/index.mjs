@@ -1,5 +1,6 @@
 import express from 'express';
 import UserController from '../controllers/userController';
+import TodosController from '../controllers/todoController';
 import authenticate from "../middleware/authentication";
 
 const router = express.Router();
@@ -23,5 +24,9 @@ router.route('/api/v1/users/:id')
 
 router.route('/api/v1/login')
   .post(UserController.logUserIn);
+
+router.route('/api/v1/todos')
+//   .get(authenticate.verifyToken, TodosController.getAllTodos)
+  .post(authenticate.verifyToken, TodosController.createTodo);
 
 export default router;

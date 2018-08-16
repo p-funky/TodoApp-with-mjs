@@ -2,7 +2,6 @@
 import models from "../models";
 import generateToken from '../utilities';
 
-
 const User = models.User;
 const Todo = models.Todo;
 
