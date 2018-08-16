@@ -29,6 +29,18 @@ const TodosController = {
       res.status(400).send(error.message);
     };
   },
+  async getOneTodo(req, res) {
+    try {
+        const myTodo = await Todo.findOne({
+            where: { id: req.params.id, userId: req.decoded.userId }
+        });
+        if (!myTodo) return res.status(403).send({ message: 'User not authorised' });
+        return res.status(200).send(myTodo);
+    }
+    catch (error) {
+      res.status(400).send(error.message);
+    };
+  },
   async updateATodo(req, res) {
     try {
         const myTodo = await Todo.findOne({

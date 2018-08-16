@@ -32,6 +32,7 @@ router.route('/api/v1/todos')
   .post(authenticate.verifyToken, TodosController.createTodo);
 
 router.route('/api/v1/todos/:id')
+  .get(authenticate.verifyToken, TodosController.getOneTodo)
   .put(authenticate.verifyToken, TodosController.updateATodo);
 
 export default router;
