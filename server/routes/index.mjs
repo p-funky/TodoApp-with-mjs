@@ -21,4 +21,7 @@ router.route('/api/v1/users/:id')
         UserController.deactivateUser
     );
 
+router.route('/api/v1/login')
+  .post(UserController.logUserIn);
+
 export default router;

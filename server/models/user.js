@@ -31,9 +31,15 @@ module.exports = (sequelize, DataTypes) => {
       hooks: {
         beforeCreate: user => {
           user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
+        },
+        beforeUpdate: (user) => {
+            if (user.password) {
+              user.password = bcrypt.hashSync(user.password, bcrypt.genSaltSync(10));
+              user.updateAt = Date.now();
+            }
         }
       }
-    }
+    },
   );
   
   User.associate = models => {
@@ -42,7 +48,11 @@ module.exports = (sequelize, DataTypes) => {
         as: 'todos',
         onDelete: 'CASCADE'
       });
-    };
+  };
+
+  User.prototype.isValidPassword = (expectedPassword, actualPassword) => 
+    bcrypt.compareSync(expectedPassword, actualPassword);
+  
   
     return User;
   };
