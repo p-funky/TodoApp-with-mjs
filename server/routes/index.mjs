@@ -10,7 +10,9 @@ router.route('/api/v1/users')
     .get(authenticate.verifyToken, UserController.getAllUsers);
 
 router.route('/api/v1/users/:id')
-    .get(authenticate.verifyToken, UserController.getOneUser)
+    .get(authenticate.verifyToken,
+        authenticate.verifyOwnProfile, 
+        UserController.getOneUser)
     .put(
         authenticate.verifyToken,
         authenticate.verifyOwnProfile, 
@@ -28,5 +30,8 @@ router.route('/api/v1/login')
 router.route('/api/v1/todos')
   .get(authenticate.verifyToken, TodosController.getAllTodos)
   .post(authenticate.verifyToken, TodosController.createTodo);
+
+router.route('/api/v1/todos/:id')
+  .put(authenticate.verifyToken, TodosController.updateATodo);
 
 export default router;
