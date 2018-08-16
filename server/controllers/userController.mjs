@@ -45,7 +45,7 @@ const UserController = {
     try {
         const allActiveUsers = await User.findAll({
             attributes: ['id', 'name', 'email', 'active', 'createdAt', 'updatedAt'],
-            where: {active: true}
+            where: { active: true }
         });
 
         if(!allActiveUsers.length) return res.status(404).send({ message: 'No user found' });

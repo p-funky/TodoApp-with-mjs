@@ -26,7 +26,7 @@ router.route('/api/v1/login')
   .post(UserController.logUserIn);
 
 router.route('/api/v1/todos')
-//   .get(authenticate.verifyToken, TodosController.getAllTodos)
+  .get(authenticate.verifyToken, TodosController.getAllTodos)
   .post(authenticate.verifyToken, TodosController.createTodo);
 
 export default router;
